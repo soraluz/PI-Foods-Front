@@ -5,25 +5,18 @@ import '../Styles/Detail_Recipe.css'
 import { NavLink } from "react-router-dom"
 
 export function Detail_Recipe(props){
-    
+        
     useEffect(()=>{
        
         const id=props.match.params.id
         props.getDetailRecipe(id)
-   
+       
     },[])
 
-    var tipos;
-
-    console.log('dietas de id enviado', props.detail)
-
+    var tipos=new Set([])
     if(props.detail.diets){
         console.log('ingreso al if si tiene dietas')
         tipos=new Set([...props.detail.diets])
-    }
-    else{
-        console.log('Ingreso al else que no tiene dietas')
-        tipos=new Set([])
     }
     
     if (props.detail.vegetarian) tipos.add('vegetarian')

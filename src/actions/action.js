@@ -15,7 +15,7 @@ export function getAllRecipes(){
 
 export function getDetailRecipe(id){
    
-   
+   console.log("Id enviado a action",id)
     return (dispatch)=>{
         dispatch(setStatus('...Cargando'))
         return fetch(`${servidor}/recipes/${id}`)
