@@ -1,8 +1,9 @@
+const servidor="https://pi-foods-back-production.up.railway.app"
 export function getAllRecipes(){
    
     return (dispatch)=>{
         dispatch(setStatus('...Cargando'))
-        return fetch("http://localhost:3001/recipes")
+        return fetch(`${servidor}/recipes`)
         .then(r=>r.json())
         .then(data=> dispatch({
             type: 'GET_ALL_RECIPES',
@@ -17,7 +18,7 @@ export function getDetailRecipe(id){
    
     return (dispatch)=>{
         dispatch(setStatus('...Cargando'))
-        return fetch(`http://localhost:3001/recipes/${id}`)
+        return fetch(`${servidor}/recipes/${id}`)
         .then(r=>r.json())
         .then(data=> dispatch({
             type: 'GET_DETAIL_RECIPE',
@@ -29,7 +30,7 @@ export function getDetailRecipe(id){
 
 export function getAllDiets(){
     return (dispatch)=>{
-        return fetch('http://localhost:3001/diets')
+        return fetch(`${servidor}/diets`)
         .then(r=>r.json())
         .then(data=> dispatch({
             type: 'GET_ALL_DIETS',
@@ -42,7 +43,7 @@ export function searchRecipes(recipe){
     
     return (dispatch)=>{
         dispatch(setStatus('...Cargando'))
-        return fetch(`http://localhost:3001/recipes?name=${recipe}`)
+        return fetch(`${servidor}/recipes?name=${recipe}`)
         .then(r=>r.json())
         .then(data=> dispatch({
             type: 'SEARCH_RECIPES',
@@ -80,7 +81,7 @@ export function sortRecipesDesc(campo){
 export function createRecipe(data){
     return (dispatch)=>{
         
-        return fetch("http://localhost:3001/recipes",
+        return fetch(`${servidor}/recipes`,
         {   method:'POST',
             body:JSON.stringify(data),
             headers:{
