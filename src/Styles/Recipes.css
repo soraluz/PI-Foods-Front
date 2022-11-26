@@ -1,0 +1,44 @@
+.recipes{
+    display:flex;
+    flex-direction:column;
+    margin: 30px
+}
+.paginado{
+    flex: flex;
+    flex-direction: row;
+    justify-content:space-around;
+    flex-wrap: wrap;
+    margin-bottom: 20px;
+}
+.boton{
+    color:black;
+    border:2px solid brown;
+    border-radius: 20px;
+    font-size: 20px;
+    background-color:antiquewhite ;
+}
+
+.paginado button:hover{
+    background-color: aqua;
+}
+
+.paginado button:focus{
+    color:blue;
+}
+
+.home{
+    display: flex;
+    flex-direction: row;
+    justify-content:space-around;
+    align-items: center;
+    flex-wrap: wrap;
+
+
+}
+.select{
+    color:red;
+    border:2px solid brown;
+    border-radius: 20px;
+    font-size: 20px;
+    background-color:antiquewhite ;
+}
