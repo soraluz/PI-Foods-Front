@@ -41,9 +41,9 @@ export default function Detail_Recipe(props){
          <h2>{detail.title}</h2>
             {detail.image ? <img src={detail.image} alt='Imagen no encontrada' />:null}
             <p>{detail.dishTypes}</p>
-            <p>{detail.summary}</p>
+            <p dangerouslySetInnerHTML={{__html:detail.summary}} />
             <p>{ arreglo?.join(" - ")}</p>
-            <p>{detail.steps}</p>
+            <p dangerouslySetInnerHTML={{__html:detail.steps}} />
             <button onClick={handleClick}>Regresar</button>
         </div>    
 }
