@@ -1,51 +1,49 @@
 import React, { useEffect } from "react"
-import { connect } from "react-redux"
+import { useSelector, useDispatch } from "react-redux"
 import { getDetailRecipe } from "../actions/action"
 import '../Styles/Detail_Recipe.css'
-import { NavLink } from "react-router-dom"
+import { useHistory,useParams } from "react-router-dom"
 
-export function Detail_Recipe(props){
-        
+export default function Detail_Recipe(props){
+    const id=useParams().id
+    const history=useHistory()
+    const dispatch=useDispatch()
+    console.log("id",id)
     useEffect(()=>{
-       
-        const id=props.match.params.id
-        props.getDetailRecipe(id)
+      
+            async function fetchData() {
+              // You can await here
+              await dispatch(getDetailRecipe(id))
+              
+            }
+            fetchData();       
        
     },[])
-
-    var tipos=new Set([])
-    if(props.detail.diets){
-        console.log('ingreso al if si tiene dietas')
-        tipos=new Set([...props.detail.diets])
+    const detail=useSelector(state=>state.detail)
+    function handleClick(){                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             
+        history.goBack()
     }
-    
-    if (props.detail.vegetarian) tipos.add('vegetarian')
-    if (props.detail.vegan) tipos.add('vegan')
-    if (props.detail.glutenFree) tipos.add('gluten free')
-    if (props.detail.dairyFree) tipos.add('dairy free')
-    let arreglo=[...tipos]
-        
+
+    var tipos
+    if(detail.diets){
+    tipos=new Set([...detail.diets])
+    }
+    else { tipos=new Set([])}
+    if (detail.vegetarian) tipos.add('vegetarian')
+    if (detail.vegan) tipos.add('vegan')
+    if (detail.glutenFree) tipos.add('gluten free')
+    if (detail.dairyFree) tipos.add('dairy free')
+    var arreglo=[...tipos]    
+   
     return <div className="detail">
-        <div><NavLink to='/Home'>Home</NavLink> </div>
-         {props.loading ? 'loading...' :null  }
-         <h2>{props.detail.title}</h2>
-            {props.detail.image ? <img src={props.detail.image} alt='Imagen no encontrada' />:null}
-            <p>{props.detail.dishTypes}</p>
-            <p>{props.detail.summary}</p>
-            <p>{ arreglo.join(" - ")}</p>
-            <p>{props.detail.steps}</p>
+       
+         {/*loading ? 'loading...' :null */ }
+         <h2>{detail.title}</h2>
+            {detail.image ? <img src={detail.image} alt='Imagen no encontrada' />:null}
+            <p>{detail.dishTypes}</p>
+            <p>{detail.summary}</p>
+            <p>{ arreglo?.join(" - ")}</p>
+            <p>{detail.steps}</p>
+            <button onClick={handleClick}>Regresar</button>
         </div>    
 }
-function mapStateToProps(state){
-    return{
-        detail:state.detail,
-        loading:state.loading
-    }
-}
-
-function mapDispatchToProps(dispatch){
-    return{
-        getDetailRecipe:(id)=>dispatch(getDetailRecipe(id))
-    }
-}
-export default connect(mapStateToProps,mapDispatchToProps)(Detail_Recipe)

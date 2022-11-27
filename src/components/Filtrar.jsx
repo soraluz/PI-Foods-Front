@@ -4,7 +4,13 @@ import { connect } from "react-redux"
 import '../Styles/Filtrar.css'
 
 export function Filtrar(props){
-    {useEffect(() =>  props.getAllDiets(), [])}
+    {useEffect(() => {
+        async function fetchData() {
+            // You can await here
+            await props.getAllDiets()
+          }
+          fetchData();
+    } , [])}
 
     function handledSelect(e){
         e.preventDefault()

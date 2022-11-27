@@ -23,7 +23,6 @@ export default function reducer(state=initialState,action){
             }
                               
         case 'GET_DETAIL_RECIPE':
-            
             return{
                 ...state,
                 detail:action.payload,

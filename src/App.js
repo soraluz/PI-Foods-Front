@@ -4,7 +4,6 @@ import Home from './components/Home.jsx';
 import Inicio from './components/Inicio.jsx';
 import Detail_Recipe from './components/Detail_Recipe.jsx';
 import Form_Recipe from './components/Form_Recipe.jsx';
-import Nav from './components/Nav.jsx';
 import Error from './components/Error';
 
 function App() {
@@ -13,13 +12,14 @@ function App() {
         <Inicio />
       </Route>
       <Route path="/home">
-        <Nav />
         <Home />
       </Route>
-      <Route path="/recipes/create" component={Form_Recipe} />
-      
-      <Route path="/recipe/:id" component={Detail_Recipe} />
-      
+      <Route path="/recipes/create">
+        <Form_Recipe />
+      </Route>       
+      <Route path="/recipe/:id">
+        <Detail_Recipe />
+      </Route>       
       <Route path="/error">
         <Error />
       </Route>
